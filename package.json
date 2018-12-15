@@ -1,6 +1,6 @@
 {
   "name": "chartjs-plugin-lineheight-annotation",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A ChartJS annotation plugin for Line charts. It creates a line from the base of the graph to the highest datapoint. Easy to style.",
   "main": "src/plugin.js",
   "scripts": {

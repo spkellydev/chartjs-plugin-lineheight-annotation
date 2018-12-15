@@ -1,0 +1,51 @@
+{
+  "name": "chartjs-plugin-lineheight-annotation",
+  "version": "0.0.1",
+  "description": "A ChartJS annotation plugin for Line charts. It creates a line from the base of the graph to the highest datapoint. Easy to style.",
+  "main": "build/lineHeightAnnotationPlugin.js",
+  "scripts": {
+    "clean": "rimraf build",
+    "watch": "rollup -c -w -i src/plugin.js",
+    "lint": "eslint src",
+    "build:dev": "rollup -c -i src/plugin.js",
+    "build:prod": "npm run build:dev && uglifyjs build/Plugin.Barchart.Background.js -c -m -o build/Plugin.Barchart.Background.min.js",
+    "prebuild": "npm run clean && npm lint",
+    "build": "npm run build:prod",
+    "preversion": "npm run lint",
+    "prepare": "npm run build:dev",
+    "prepublishOnly": "npm run build:prod",
+    "release:major": "npm version major && npm publish && git push --follow-tags",
+    "release:minor": "npm version minor && npm publish && git push --follow-tags",
+    "release:patch": "npm version patch && npm publish && git push --follow-tags",
+    "release:pre": "npm version prerelease && npm publish --tag=next && git push --follow-tags"
+  },
+  "keywords": [],
+  "files": [
+    "build",
+    "src/**/*.js"
+  ],
+  "author": {
+    "name": "Sean Kelly",
+    "email": "spkellydev@gmail.com",
+    "url": "http://spk.design/"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^2.7.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-external-helpers": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-external-helpers": "^7.0.0-beta.3",
+    "eslint": "^5.10.0",
+    "package-preamble": "^0.1.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.67.4",
+    "rollup-plugin-babel": "^4.1.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "uglify-es": "^3.3.9"
+  }
+}

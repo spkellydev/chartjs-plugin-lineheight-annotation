@@ -19,7 +19,13 @@
     "release:patch": "npm version patch && npm publish && git push --follow-tags",
     "release:pre": "npm version prerelease && npm publish --tag=next && git push --follow-tags"
   },
-  "keywords": [],
+  "keywords": [
+    "chartjs",
+    "chartjs-plugin",
+    "line chart plugin",
+    "react-chartjs-2",
+    "react-chartjs"
+  ],
   "files": [
     "build",
     "src/**/*.js"

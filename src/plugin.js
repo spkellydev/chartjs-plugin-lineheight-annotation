@@ -75,7 +75,7 @@ const plugin = {
       // set the line settings (stroke) and then restore the canvas
       ctx.save();
       ctx.beginPath();
-      if (options.noDash) {
+      if (!options.noDash) {
         ctx.setLineDash([10, 10]);
       }
       ctx.moveTo(x, highestDataY);

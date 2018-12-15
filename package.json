@@ -1,14 +1,14 @@
 {
   "name": "chartjs-plugin-lineheight-annotation",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A ChartJS annotation plugin for Line charts. It creates a line from the base of the graph to the highest datapoint. Easy to style.",
-  "main": "build/lineHeightAnnotationPlugin.js",
+  "main": "src/plugin.js",
   "scripts": {
     "clean": "rimraf build",
     "watch": "rollup -c -w -i src/plugin.js",
     "lint": "eslint src",
     "build:dev": "rollup -c -i src/plugin.js",
-    "build:prod": "npm run build:dev && uglifyjs build/Plugin.Barchart.Background.js -c -m -o build/Plugin.Barchart.Background.min.js",
+    "build:prod": "npm run build:dev && uglifyjs build/lineHeightAnnotationPlugin.js -c -m -o build/lineHeightAnnotationPlugin.min.js",
     "prebuild": "npm run clean && npm lint",
     "build": "npm run build:prod",
     "preversion": "npm run lint",

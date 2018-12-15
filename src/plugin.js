@@ -27,7 +27,7 @@ const plugin = {
       const activePoint = chart.tooltip._active[0];
 
       const x = activePoint.tooltipPosition().x;
-      const yAxis = chart.scales["y-axis-0"];
+      const yAxis = chart.scales[options.yAxis ? options.yAxis : "y-axis-0"];
 
       // Activity pages don't need this functionality.
       if (!yAxis) {
@@ -75,7 +75,7 @@ const plugin = {
       // set the line settings (stroke) and then restore the canvas
       ctx.save();
       ctx.beginPath();
-      if (!options.dash) {
+      if (options.noDash) {
         ctx.setLineDash([10, 10]);
       }
       ctx.moveTo(x, highestDataY);

@@ -2,6 +2,10 @@
 
 A small, lightweight and reliable ChartJS plugin for Line charts specifically. This plugin was made to be compatible with the `react-chartjs-2` library, but it is available as a commonjs and umd module, as well.
 
+![alt-text](https://github.com/spkellydev/chartjs-plugin-lineheight-annotation/raw/master/examples/public/always-chartjs-lineheight-annotation-plugin.png "Chart JS Line Height Annotation Plugin")
+
+The lines always go to the top of the data point, but you can choose if they're _always on_ **or** _when user hovers_. On hover: The line will draw to the tallest data point near the user's hover position.
+
 ## Usage
 
 ```sh
@@ -21,8 +25,9 @@ class App extends Component {
     return (
       <Line
         options={{
+          // see all defaults / options below!
           lineHeightAnnotation: {
-            color: "#fff",
+            color: "#000",
             shadow: true
           }
         }}
@@ -68,3 +73,7 @@ lineHeightAnnotation: {
   noDash: true,
 }
 ```
+
+## Always on:
+
+![alt-text](https://github.com/spkellydev/chartjs-plugin-lineheight-annotation/raw/master/examples/public/always-chartjs-lineheight-annotation-plugin.png "Chart JS Line Height Annotation Plugin")

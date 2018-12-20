@@ -1879,9 +1879,9 @@ chartjs-color@^2.1.0:
     chartjs-color-string "^0.5.0"
     color-convert "^0.5.3"
 
-chartjs-plugin-lineheight-annotation@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/chartjs-plugin-lineheight-annotation/-/chartjs-plugin-lineheight-annotation-0.2.2.tgz#75e67980f9769efa2b621c27d38e1a1ec49add5c"
+chartjs-plugin-lineheight-annotation@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/chartjs-plugin-lineheight-annotation/-/chartjs-plugin-lineheight-annotation-0.3.0.tgz#2b9ebc0e54d35d48fceaf22ac04d23a342683ade"
   dependencies:
     chart.js "^2.7.3"
 

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "chart.js": "^2.7.3",
-    "chartjs-plugin-lineheight-annotation": "^0.2.2",
+    "chartjs-plugin-lineheight-annotation": "^0.3.0",
     "react": "^16.6.3",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.6.3",

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-import "./plugin.js";
+import "./plugin";
 
 export default class App extends Component {
   constructor(props) {
@@ -61,7 +61,9 @@ export default class App extends Component {
         <Line
           options={{
             responsive: true,
-            lineHeightAnnotation: true
+            lineHeightAnnotation: {
+              color: "#fff"
+            }
           }}
           data={this.getChartData}
         />

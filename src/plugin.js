@@ -183,7 +183,7 @@ const plugin = {
     const datasets = lineChartUtils.datasets;
     let meta = [];
 
-    let always = options.always || true;
+    let always = options.always === false || true;
     if (always) {
       datasets.forEach((set, i) => {
         meta.push(chart.getDatasetMeta(i).data);

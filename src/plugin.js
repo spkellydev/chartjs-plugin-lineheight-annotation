@@ -8,7 +8,7 @@ import Chart from "chart.js";
  * @param ctx context from chart.ctx
  * @param options options from chart.config.option.lineHeightAnnotation
  */
-class AnnotationRenderer {
+export class AnnotationRenderer {
   constructor(ctx, options) {
     this.ctx = ctx;
     this.options = options;
@@ -66,7 +66,7 @@ class AnnotationRenderer {
  * LineChartUtils calculates metrics about the chart for annotations.
  * @param chart chartjs instance
  */
-class LineChartUtils {
+export class LineChartUtils {
   constructor(chart) {
     this.chart = chart;
   }

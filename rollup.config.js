@@ -11,7 +11,7 @@ export default {
     globals: {
       "chart.js": "Chart"
     },
-    name: "PluginBarchartBackground"
+    name: "lineHeightAnnotationPlugin"
   },
   plugins: [resolve(), commonjs(), babel()]
 };

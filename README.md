@@ -38,8 +38,12 @@ and that's it!
 ### Options
 
 ```js
-/// defaults
+/// default values
 lineHeightAnnotation: {
+  // defaults to have line to the highest data point on every tick
+  always: true,
+  // optionally, only have line draw to the highest datapoint nearest the user's hover position
+  hover: false,
   // colors of the line
   color: '#000',
   // name of yAxis

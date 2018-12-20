@@ -20,9 +20,8 @@ export class AnnotationRenderer {
    */
   shadow() {
     let options = this.options;
-    let ctx = this.ctx;
-
     if (options.shadow) {
+      let ctx = this.ctx;
       let { shadow } = options;
       const _stroke = ctx.stroke;
       ctx.stroke = function() {
@@ -112,10 +111,17 @@ export class LineChartUtils {
     return [maxY, borderWidth];
   }
 
-  getMaximumDimensions(yAxis) {
-    const tickMax = yAxis.ticksAsNumbers[0]; // first index is always the tallest
-    const tickLow = yAxis.ticksAsNumbers[yAxis.ticksAsNumbers.length - 1]; // lowest tick
-    let { top, bottom } = yAxis;
+  getMaximumDimensions(axis) {
+    if (axis.ticksAsNumbers) {
+      const tickMax = axis.ticksAsNumbers[0]; // first index is always the tallest
+      const tickLow = axis.ticksAsNumbers[axis.ticksAsNumbers.length - 1]; // lowest tick
+      let { top, bottom } = axis;
+      return [tickMax, tickLow, top, bottom];
+    }
+
+    const tickLow = Number(axis.ticks[0]);
+    const tickMax = Number(axis.ticks[axis.ticks.length - 1]);
+    let { top, bottom } = axis;
     return [tickMax, tickLow, top, bottom];
   }
 
@@ -132,6 +138,14 @@ export class LineChartUtils {
   get datasets() {
     return this.chart.config.data.datasets;
   }
+
+  get ticks() {
+    return this.chart.scales["x-axis-0"].ticks;
+  }
+
+  get chartArea() {
+    return this.chart.chartArea;
+  }
 }
 
 const plugin = {
@@ -144,28 +158,65 @@ const plugin = {
     const optionsHandler = new AnnotationRenderer(ctx, options);
     optionsHandler.shadow();
 
-    // draw a dashed line when someone hovers over a data point
-    if (lineChartUtils.isTooltipActive()) {
-      const activePoint = lineChartUtils.tooltip._active[0];
+    const xAxis = chart.scales[options.xAxis ? options.xAxis : "x-axis-0"];
+    const yAxis = chart.scales[options.yAxis ? options.yAxis : "y-axis-0"];
 
-      const x = activePoint.tooltipPosition().x;
-      const yAxis = chart.scales[options.yAxis ? options.yAxis : "y-axis-0"];
+    // Activity pages don't need this functionality.
+    if (!yAxis) {
+      console.error(
+        "Line Height Annotation Plugin: expected y axis to be named 'y-axis-0' because no options.lineHeightAnnotation.yAxis was set. 'y-axis-0' was not found."
+      );
+      return;
+    }
 
-      // Activity pages don't need this functionality.
-      if (!yAxis) {
-        return;
+    if (!xAxis) {
+      console.error(
+        "Line Height Annotation Plugin: expected x axis to be named 'x-axis-0' because no options.lineHeightAnnotation.xAxis was set. 'x-axis-0' was not found."
+      );
+      return;
+    }
+
+    let [tickMax, tickLow, topY, bottomY] = lineChartUtils.getMaximumDimensions(
+      yAxis
+    );
+
+    const datasets = lineChartUtils.datasets;
+    let meta = [];
+
+    let always = options.always || true;
+    if (always) {
+      datasets.forEach((set, i) => {
+        meta.push(chart.getDatasetMeta(i).data);
+      });
+
+      let ticks = lineChartUtils.ticks;
+
+      for (let k = 0; k < ticks.length; k++) {
+        let xSpace = xAxis.getPixelForTick(k);
+        meta.map(set => {
+          let points = set.filter(point => {
+            return point._model.x === xSpace;
+          });
+
+          points.forEach(point => {
+            optionsHandler.drawLineHeightAnnotation(
+              xSpace,
+              bottomY,
+              point._model.y
+            );
+          });
+        });
       }
+    }
 
-      let [
-        tickMax,
-        tickLow,
-        topY,
-        bottomY
-      ] = lineChartUtils.getMaximumDimensions(yAxis);
-
+    let hover = options.hover || false;
+    // draw a dashed line when someone hovers over a data point
+    if (hover && lineChartUtils.isTooltipActive()) {
+      const activePoint = lineChartUtils.tooltip._active[0];
+      const x = activePoint.tooltipPosition().x;
       let maxY = 1;
       let borderWidth = 0;
-      const datasets = lineChartUtils.datasets;
+
       datasets.forEach(set => {
         // get maximum Y value
         // get borderWidth of that dataset
@@ -175,7 +226,6 @@ const plugin = {
           borderWidth
         ]);
       });
-
       // calculate the height of the line.
       // see function above in comment block.
       let highestDataY = lineChartUtils.calculateHighestDataY([

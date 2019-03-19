@@ -163,16 +163,10 @@ const plugin = {
 
     // Activity pages don't need this functionality.
     if (!yAxis) {
-      console.error(
-        "Line Height Annotation Plugin: expected y axis to be named 'y-axis-0' because no options.lineHeightAnnotation.yAxis was set. 'y-axis-0' was not found."
-      );
       return;
     }
 
     if (!xAxis) {
-      console.error(
-        "Line Height Annotation Plugin: expected x axis to be named 'x-axis-0' because no options.lineHeightAnnotation.xAxis was set. 'x-axis-0' was not found."
-      );
       return;
     }
 

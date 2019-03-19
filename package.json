@@ -10,7 +10,7 @@
     "lint": "eslint src",
     "build:dev": "rollup -c -i src/plugin.js",
     "build:prod": "npm run build:dev && uglifyjs build/lineHeightAnnotationPlugin.js -c -m -o build/lineHeightAnnotationPlugin.min.js",
-    "prebuild": "npm run clean && npm lint",
+    "prebuild": "npm run clean && npm run lint",
     "build": "npm run build:prod",
     "preversion": "npm run lint",
     "prepare": "npm run build:dev",

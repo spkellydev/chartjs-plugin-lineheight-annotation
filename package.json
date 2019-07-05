@@ -46,7 +46,7 @@
     "@babel/preset-env": "^7.2.0",
     "babel-core": "^6.26.3",
     "babel-plugin-external-helpers": "^7.0.0-beta.3",
-    "eslint": "^5.10.0",
+    "eslint": "^5.16.0",
     "package-preamble": "^0.1.0",
     "rimraf": "^2.6.2",
     "rollup": "^0.67.4",

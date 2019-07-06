@@ -1,5 +1,5 @@
 # Chart JS Line Height Annotation Plugin
-
+### PRs Welcome
 A small, lightweight and reliable ChartJS plugin for Line charts specifically. This plugin was made to be compatible with the `react-chartjs-2` library, but it is available as a commonjs and umd module, as well.
 
 ![alt-text](https://github.com/spkellydev/chartjs-plugin-lineheight-annotation/raw/master/examples/public/always-chartjs-lineheight-annotation-plugin.png "Chart JS Line Height Annotation Plugin")
